@@ -764,7 +764,6 @@ func transformCompile(args []string) ([]string, error) {
 	// to replace the original package name in the package clause below.
 	newPkgPath := ""
 	if curPkg.Name != "main" && curPkg.ToObfuscate {
-		fmt.Println("curPkg obfuscated", curPkg.ImportPath)
 		newPkgPath = curPkg.obfuscatedImportPath()
 		flags = flagSetValue(flags, "-p", newPkgPath)
 	}
