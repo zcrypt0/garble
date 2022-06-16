@@ -40,7 +40,7 @@ import (
 	"golang.org/x/mod/semver"
 	"golang.org/x/tools/go/ast/astutil"
 
-	"mvdan.cc/garble/internal/literals"
+	"github.com/zcrypt0/garble/internal/literals"
 )
 
 var flagSet = flag.NewFlagSet("garble", flag.ContinueOnError)

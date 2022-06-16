@@ -7,7 +7,7 @@ import (
 	"go/ast"
 	"strings"
 
-	ah "mvdan.cc/garble/internal/asthelper"
+	ah "github.com/zcrypt0/garble/internal/asthelper"
 )
 
 // stripRuntime removes unnecessary code from the runtime,

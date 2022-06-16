@@ -96,7 +96,7 @@ stderr 'directory not found'
 # Note that Go 1.18.0 shipped with -buildvcs=true for "go test",
 # so it's a special case that we need to handle until 1.18.1 is out.
 garble version
-stdout -count=1 'mvdan.cc/garble \(devel\)'
+stdout -count=1 'github.com/zcrypt0/garble \(devel\)'
 stdout -count=1 'Build settings'
 stdout -count=3 '-compiler|GOOS|GOARCH'
 [go1.19] ! stdout 'vcs'
