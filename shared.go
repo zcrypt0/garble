@@ -247,7 +247,6 @@ func appendListedPackages(packages []string, withDeps bool) error {
 
 	anyToObfuscate := false
 	for path, pkg := range cache.ListedPackages {
-		fmt.Println("listedpkg", path)
 		// If "GOGARBLE=foo/bar", "foo/bar_test" should also match.
 		if pkg.ForTest != "" {
 			path = pkg.ForTest
@@ -260,7 +259,7 @@ func appendListedPackages(packages []string, withDeps bool) error {
 
 		case whitelist != nil && !whitelist[pkg.ImportPath]:
 			// package not on whitelist, ignore it
-			fmt.Println("ignoring pkg (whitelist)", path)
+			// fmt.Println("ignoring pkg (whitelist)", path)
 
 		case pkg.Incomplete:
 			// We can't obfuscate packages which weren't loaded.
