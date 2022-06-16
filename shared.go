@@ -237,6 +237,8 @@ func appendListedPackages(packages []string, withDeps bool) error {
 	var whitelist map[string]bool = nil
 
 	if flagPkgWhitelist != "" {
+		whitelist = make(map[string]bool, 0)
+
 		whitelistPkgPaths := strings.Split(flagPkgWhitelist, ",")
 		for _, whitelistPkgPath := range whitelistPkgPaths {
 			whitelist[whitelistPkgPath] = true
