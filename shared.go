@@ -234,9 +234,18 @@ func appendListedPackages(packages []string, withDeps bool) error {
 		return fmt.Errorf("go list error: %v: %s", err, stderr.Bytes())
 	}
 
+	var whitelist map[string]bool = nil
+
+	if flagPkgWhitelist != "" {
+		whitelistPkgPaths := strings.Split(flagPkgWhitelist, ",")
+		for _, whitelistPkgPath := range whitelistPkgPaths {
+			whitelist[whitelistPkgPath] = true
+		}
+	}
+
 	anyToObfuscate := false
 	for path, pkg := range cache.ListedPackages {
-		fmt.Println("listedpkg", pkg.ImportPath)
+		fmt.Println("listedpkg", path)
 		// If "GOGARBLE=foo/bar", "foo/bar_test" should also match.
 		if pkg.ForTest != "" {
 			path = pkg.ForTest
@@ -247,6 +256,10 @@ func appendListedPackages(packages []string, withDeps bool) error {
 		case cannotObfuscate[path], runtimeAndDeps[path]:
 			// We don't support obfuscating these yet.
 
+		case whitelist != nil && !whitelist[pkg.ImportPath]:
+			// package not on whitelist, ignore it
+			fmt.Println("ignoring pkg (whitelist)", path)
+
 		case pkg.Incomplete:
 			// We can't obfuscate packages which weren't loaded.
 
@@ -254,6 +267,10 @@ func appendListedPackages(packages []string, withDeps bool) error {
 			path == "command-line-arguments",
 			strings.HasPrefix(path, "plugin/unnamed"),
 			module.MatchPrefixPatterns(cache.GOGARBLE, path):
+
+			if whitelist != nil {
+				fmt.Println("whitelisted package", path)
+			}
 
 			pkg.ToObfuscate = true
 			anyToObfuscate = true

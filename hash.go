@@ -146,6 +146,11 @@ func appendFlags(w io.Writer, forBuildHash bool) {
 		io.WriteString(w, " -seed=")
 		io.WriteString(w, flagSeed.String())
 	}
+
+	if flagPkgWhitelist != "" {
+		io.WriteString(w, " -whitelist")
+		io.WriteString(w, flagPkgWhitelist)
+	}
 }
 
 // buildIDComponentLength is the number of bytes each build ID component takes,

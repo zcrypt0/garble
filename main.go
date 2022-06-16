@@ -51,6 +51,8 @@ var (
 	flagDebug    bool
 	flagDebugDir string
 	flagSeed     seedFlag
+
+	flagPkgWhitelist string
 )
 
 func init() {
@@ -60,6 +62,7 @@ func init() {
 	flagSet.BoolVar(&flagDebug, "debug", false, "Print debug logs to stderr")
 	flagSet.StringVar(&flagDebugDir, "debugdir", "", "Write the obfuscated source to a directory, e.g. -debugdir=out")
 	flagSet.Var(&flagSeed, "seed", "Provide a base64-encoded seed, e.g. -seed=o9WDTZ4CN4w\nFor a random seed, provide -seed=random")
+	flagSet.StringVar(&flagPkgWhitelist, "whitelist", "", "comma separated list of packages to obfuscate")
 }
 
 var rxGarbleFlag = regexp.MustCompile(`-(?:literals|tiny|debug|debugdir|seed)(?:$|=)`)
