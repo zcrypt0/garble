@@ -104,7 +104,7 @@ stdout -count=3 '-compiler|GOOS|GOARCH'
 # Obtained from a real build while developing.
 env GARBLE_TEST_SETTINGS='[{"Key":"vcs","Value":"git"},{"Key":"vcs.revision","Value":"91ea246349544769f5100c29f79cb0f173abfeea"},{"Key":"vcs.time","Value":"2022-03-18T13:45:11Z"},{"Key":"vcs.modified","Value":"true"}]'
 garble version
-stdout -count=1 'mvdan\.cc/garble v0\.0\.0-20220318134511-91ea24634954'
+stdout -count=1 'github\.com/zcrypt0/garble v0\.0\.0-20220318134511-91ea24634954'
 stdout -count=1 'Build settings'
 stdout -count=3 '-compiler|GOOS|GOARCH'
 [go1.19] stdout -count=1 'vcs git'
