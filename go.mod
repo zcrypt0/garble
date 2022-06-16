@@ -1,4 +1,4 @@
-module mvdan.cc/garble
+module github.com/zcrypt0/garble
 
 go 1.18
 
