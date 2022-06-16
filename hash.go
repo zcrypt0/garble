@@ -148,7 +148,7 @@ func appendFlags(w io.Writer, forBuildHash bool) {
 	}
 
 	if flagPkgWhitelist != "" {
-		io.WriteString(w, " -whitelist")
+		io.WriteString(w, " -whitelist=")
 		io.WriteString(w, flagPkgWhitelist)
 	}
 }
