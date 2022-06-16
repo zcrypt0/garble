@@ -236,6 +236,7 @@ func appendListedPackages(packages []string, withDeps bool) error {
 
 	anyToObfuscate := false
 	for path, pkg := range cache.ListedPackages {
+		fmt.Println("listedpkg", pkg.ImportPath)
 		// If "GOGARBLE=foo/bar", "foo/bar_test" should also match.
 		if pkg.ForTest != "" {
 			path = pkg.ForTest
