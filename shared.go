@@ -235,6 +235,7 @@ func appendListedPackages(packages []string, withDeps bool) error {
 	}
 
 	var whitelist map[string]bool = nil
+	var blacklist map[string]bool = nil
 
 	if flagPkgWhitelist != "" {
 		whitelist = make(map[string]bool, 0)
@@ -242,6 +243,15 @@ func appendListedPackages(packages []string, withDeps bool) error {
 		whitelistPkgPaths := strings.Split(flagPkgWhitelist, ",")
 		for _, whitelistPkgPath := range whitelistPkgPaths {
 			whitelist[whitelistPkgPath] = true
+		}
+	}
+
+	if flagPkgBlacklist != "" {
+		blacklist = make(map[string]bool, 0)
+
+		blacklistPkgPaths := strings.Split(flagPkgBlacklist, ",")
+		for _, blacklistPkgPath := range blacklistPkgPaths {
+			blacklist[blacklistPkgPath] = true
 		}
 	}
 
@@ -260,6 +270,9 @@ func appendListedPackages(packages []string, withDeps bool) error {
 		case whitelist != nil && !whitelist[pkg.ImportPath]:
 			// package not on whitelist, ignore it
 			// fmt.Println("ignoring pkg (whitelist)", path)
+
+		case blacklist != nil && blacklist[pkg.ImportPath]:
+			//package on blacklist, ignoring it
 
 		case pkg.Incomplete:
 			// We can't obfuscate packages which weren't loaded.
