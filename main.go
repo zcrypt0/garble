@@ -1866,7 +1866,7 @@ func transformLink(args []string) ([]string, error) {
 
 	// Starting in Go 1.17, Go's version is implicitly injected by the linker.
 	// It's the same method as -X, so we can override it with an extra flag.
-	flags = append(flags, "-X=runtime.buildVersion=unknown")
+ 	// flags = append(flags, "-X=runtime.buildVersion=unknown")
 
 	// Ensure we strip the -buildid flag, to not leak any build IDs for the
 	// link operation or the main package's compilation.
